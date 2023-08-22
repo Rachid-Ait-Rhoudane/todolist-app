@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.wrapper .colors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    gap: 20px;
+    width: 500px;
+    height: 100px;
+}
+
+.wrapper .colors .color{
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    opacity: 0.1;
+}
+
+.wrapper .colors .active{
+    opacity: 1;
+}
+
+.wrapper .show-color{
+    width: 500px;
+    height: 300px;
+    background-color: yellow;
+}
