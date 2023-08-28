@@ -3,28 +3,23 @@ let taskForm = document.forms.taskForm;
 let tasks = localStorage.getItem("tasks") ?? [];
 
 if(!Array.isArray(tasks)) {
-    tasks = tasks.split(",").map( ele => {
-        let obj = JSON.parse(ele.replace('|', ','));
-        obj.toString = function() {
-            return `{"id": "${this.id}"|"title": "${this.title}"}`;
-        }
-        return obj;
-    });
+    tasks = JSON.parse(tasks);
 }
 
 let task_id = 1;
 tasks.forEach(task => {
-    createTask(task.title, task_id);
+    showTask(task.title, task_id);
     task_id++;
 });
 
 taskForm.addEventListener("submit", function(e) {
     e.preventDefault();
-    createTask(taskForm.task.value, tasks.length + 1);
+    showTask(taskForm.task.value, tasks.length + 1);
     storeTask(taskForm.task.value, tasks.length + 1);
 });
 
-function createTask(taskTitle, id){
+function showTask(taskTitle, id){
+    
     let taskDiv = document.createElement("div");
     taskDiv.className = "task";
     taskDiv.id = id;
@@ -51,24 +46,24 @@ function createTask(taskTitle, id){
 function storeTask(taskTitle, id){
     tasks.push({
         id: id,
-        title: taskTitle,
-        toString() {
-            return `{"id": "${this.id}"|"title": "${this.title}"}`;
-        }
+        title: taskTitle
     });
-
-    localStorage.setItem("tasks", tasks);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function deleteTask(id) {
 
-    tasks.forEach( (task, index) => {
-        if(task.id == id){
-            tasks.splice(index, 1);
-        }
-    })
+    if(tasks.length > 1) {
+        tasks.forEach( (task, index) => {
+            if(task.id == id){
+                tasks.splice(index, 1);
+            }
+        })
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    } else {
+        tasks.splice(0, 1);
+        localStorage.removeItem("tasks");
+    }
 
     document.getElementById(id).remove();
-
-    localStorage.setItem("tasks", tasks);
 }
