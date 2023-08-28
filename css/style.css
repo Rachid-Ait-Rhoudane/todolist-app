@@ -125,3 +125,82 @@ body{
 .show-tasks .task .btn-delete:hover{
     background-color: rgb(206, 2, 2);
 }
+
+.model-wrapper {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.model-wrapper .confirm-model {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+    .model-wrapper .confirm-model {
+        width: 300px;
+    }
+}
+
+.model-wrapper .confirm-model .confirm-model-title {
+    margin-bottom: 10px;
+}
+
+.model-wrapper .confirm-model .confirm-model-txt {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+    .model-wrapper .confirm-model .confirm-model-txt {
+        text-align: center;
+    }
+}
+
+.model-wrapper .confirm-model .confirm-model-buttons{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+@media (max-width: 767px) {
+    .model-wrapper .confirm-model .confirm-model-buttons{
+        justify-content: center;
+    }
+}
+
+.model-wrapper .confirm-model .confirm-model-buttons .confirm,
+.model-wrapper .confirm-model .confirm-model-buttons .cancel {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.model-wrapper .confirm-model .confirm-model-buttons .confirm {
+    background-color: green;
+}
+
+.model-wrapper .confirm-model .confirm-model-buttons .cancel {
+    background-color: grey;
+}

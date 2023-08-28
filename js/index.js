@@ -18,6 +18,21 @@ taskForm.addEventListener("submit", function(e) {
     storeTask(taskForm.task.value, tasks.length + 1);
 });
 
+let confirmModel = document.querySelector(".model-wrapper");
+
+let confirm = document.querySelector(".model-wrapper .confirm-model .confirm-model-buttons .confirm");
+confirm.addEventListener("click", function () {
+    deleteTask(task_id);
+    confirmModel.style.opacity = 0;
+    confirmModel.style.zIndex = -1;
+});
+
+let cancel = document.querySelector(".model-wrapper .confirm-model .confirm-model-buttons .cancel");
+cancel.addEventListener("click", function() {
+    confirmModel.style.opacity = 0;
+    confirmModel.style.zIndex = -1;
+});
+
 function showTask(taskTitle, id){
     
     let taskDiv = document.createElement("div");
@@ -34,7 +49,9 @@ function showTask(taskTitle, id){
     let btnDeleteTxt = document.createTextNode("Delete");
     btnDelete.appendChild(btnDeleteTxt);
     btnDelete.addEventListener("click", function() {
-        deleteTask(this.parentElement.id)
+        task_id = this.parentElement.id;
+        confirmModel.style.zIndex = 1;
+        confirmModel.style.opacity = 1;
     });
 
     taskDiv.appendChild(taskP);
