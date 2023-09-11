@@ -1,0 +1,9 @@
+@use "../general/variables" as *;
+
+%main-section-header-lignes {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 1px;
+    background-color: $secondary-color;
+}

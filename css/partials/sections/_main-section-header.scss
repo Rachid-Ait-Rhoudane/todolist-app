@@ -1,0 +1,46 @@
+@use "../helpers/mixins" as *;
+@use "../general/variables" as *;
+@use "../helpers/placeholders" as *;
+
+main {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h3 {
+            position: relative;
+            font: {
+                size: 32px;
+                weight: $text-weight;
+            };
+            color: $secondary-color;
+            &::before {
+                @extend %main-section-header-lignes;
+                bottom: -2px;
+                width: 75%;
+            }
+            &::after {
+                @extend %main-section-header-lignes;
+                bottom: -10px;
+                width: 50%;
+            }
+        }
+        button {
+            display: block;
+            padding: 10px;
+            background-color: $secondary-color;
+            color: white;
+            font: {
+                size: 18px;
+                weight: $text-weight;
+            };
+            cursor: pointer;
+            user-select: none;
+            border-radius: 6px;
+            border: none;
+            &:hover {
+                background-color: $hover-color;
+            }
+        }
+    }
+}

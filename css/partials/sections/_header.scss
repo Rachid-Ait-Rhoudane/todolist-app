@@ -1,33 +1,35 @@
 @use "../general/variables" as *;
 
-.container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    .logo {
-        width: 75px;
-        img {
-            max-width: 100%;
+header {
+    .container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        .logo {
+            width: 75px;
+            img {
+                max-width: 100%;
+            }
         }
-    }
-    .title {
-        font: {
-            size: 32px;
-            weight: 800;
-            style: italic;
+        .title {
+            font: {
+                size: 52px;
+                weight: 800;
+                style: italic;
+            }
+            color: $secondary-color;
         }
-        color: $secondary-color;
-    }
-    &::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -10px;
-        height: 4px;
-        width: calc(100% - 30px);
-        background-color: $secondary-color;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            height: 4px;
+            width: calc(100% - 30px);
+            background-color: $secondary-color;
+        }
     }
 }
