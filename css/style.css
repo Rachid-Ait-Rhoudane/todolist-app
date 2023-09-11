@@ -51,3 +51,40 @@ ul {
     width: 1170px;
   }
 }
+
+.container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+}
+.container .logo {
+  width: 75px;
+}
+.container .logo img {
+  max-width: 100%;
+}
+.container .title {
+  font-size: 32px;
+  font-weight: 800;
+  font-style: italic;
+  color: #BFA575;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: -10px;
+  height: 4px;
+  width: calc(100% - 30px);
+  background-color: #BFA575;
+}
