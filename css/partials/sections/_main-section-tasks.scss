@@ -1,0 +1,51 @@
+@use "../helpers/mixins" as *;
+@use "../general/variables" as *;
+
+main {
+    .tasks {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .task {
+            position: relative;
+            padding: 10px;
+            color: $secondary-color;
+            border: {
+                width: 1px;
+                style: solid;
+                color: $secondary-color;
+            };
+            border-radius: 10px;
+            .title {
+                font : {
+                    size: 32px;
+                    weight: $text-weight;
+                };
+                padding: {
+                    top: 10px;
+                    bottom: 10px;
+                };
+            }
+            .task-description {
+                line-height: 1.8;
+                overflow: hidden;
+                height: 0;
+            }
+            .actions {
+                position: absolute;
+                top: 30px;
+                right: 20px;
+                display: flex;
+                gap: 20px;
+                i {
+                    font-size: 22px;
+                    cursor: pointer;
+                    user-select: none;
+                    &:hover {
+                        color: $hover-color;
+                    }
+                }
+            }
+        }
+    }
+}

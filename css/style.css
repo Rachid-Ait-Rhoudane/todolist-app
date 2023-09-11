@@ -89,7 +89,7 @@ header .container::after {
   background-color: #BFA575;
 }
 
-main {
+main .container {
   margin-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,7 +98,7 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 main .header h3::before, main .header h3::after {
@@ -151,4 +151,55 @@ main .header button {
 }
 main .header button:hover {
   background-color: #b1a081;
+}
+
+main .tasks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 30px;
+}
+main .tasks .task {
+  position: relative;
+  padding: 10px;
+  color: #BFA575;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #BFA575;
+  border-radius: 10px;
+}
+main .tasks .task .title {
+  font-size: 32px;
+  font-weight: 800;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+main .tasks .task .task-description {
+  line-height: 1.8;
+  overflow: hidden;
+  height: 0;
+}
+main .tasks .task .actions {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+main .tasks .task .actions i {
+  font-size: 22px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+main .tasks .task .actions i:hover {
+  color: #b1a081;
 }
