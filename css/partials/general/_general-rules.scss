@@ -1,0 +1,55 @@
+@use "./partials/helpers/mixins" as *;
+@use "./variables" as *;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    background-color: $main-color;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none
+}
+
+.container {
+
+    padding: 15px {
+        top: 0;
+        bottom: 0;
+    };
+
+    margin: auto {
+        top: 0;
+        bottom: 0;
+    };
+
+    @include breakpoints(mobile) {
+        width: 100%;
+    };
+
+    @include breakpoints(small) {
+        width: 750px;
+    };
+
+    @include breakpoints(medium) {
+        width: 970px;
+    };
+
+    @include breakpoints(large) {
+        width: 1170px;
+    };
+}
