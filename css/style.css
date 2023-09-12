@@ -67,12 +67,11 @@ main .header h3::before, main .header h3::after {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
 }
 
 .modal-wrapper .modal {
   position: absolute;
-  top: -50%;
+  top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -123,6 +122,12 @@ main .header h3::before, main .header h3::after {
   }
 }
 
+.modal-wrapper {
+  display: none;
+}
+.modal-wrapper .modal {
+  top: -50%;
+}
 .modal-wrapper .modal .modal-content {
   display: -webkit-box;
   display: -ms-flexbox;
