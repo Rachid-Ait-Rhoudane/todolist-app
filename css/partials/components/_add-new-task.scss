@@ -2,7 +2,7 @@
 @use "../helpers/placeholders" as *;
 @use "../helpers/mixins" as *;
 
-.modal-wrapper {
+#add-new-task {
     @extend %modal-wrapper;
     display: none;
     .modal {
