@@ -3,11 +3,11 @@ let tasksWrapper = document.querySelector("main .tasks");
 
 let tasks = localStorage.getItem("tasks") ?? [];
 
-let taskId = 1;
 if(!Array.isArray(tasks)) {
     tasks = JSON.parse(tasks);
 }
 
+let taskId = 1;
 for(let task of tasks) {
     showTask(taskId, task.title, task.description);
     taskId++;
@@ -38,11 +38,13 @@ addModalCancelButton.addEventListener("click", function () {
 
 addModalSaveButton.addEventListener("click", function () {
     taskId++;
+
     let newTask = {
         id: taskId,
         title: newTaskTitle.value,
         description: newTaskDescription.value
     };
+
     tasks.push(newTask);
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -50,8 +52,16 @@ addModalSaveButton.addEventListener("click", function () {
     closeAddNewtaskModal();
 
     showTask(newTask.id, newTask.title, newTask.description);
-
 });
+
+//Delete All Tasks
+let deleteAllButton = document.querySelector("main .actions .delete-all");
+
+let deleteAllModal = document.querySelector("#delete-all .modal");
+
+let DeleteAllCancel = document.querySelector("#delete-all .modal-buttons .cancel");
+
+let DeleteAllSave = document.querySelector("#delete-all .modal-buttons .save");
 
 
 function showTask (id, title, description) {
