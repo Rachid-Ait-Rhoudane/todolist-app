@@ -134,7 +134,16 @@ main .header h3::after {
   bottom: -10px;
   width: 50%;
 }
-main .header button {
+main .header .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+main .header .actions button {
   display: block;
   padding: 10px;
   background-color: #BFA575;
@@ -149,7 +158,7 @@ main .header button {
   border-radius: 6px;
   border: none;
 }
-main .header button:hover {
+main .header .actions button:hover {
   background-color: #b1a081;
 }
 
@@ -164,7 +173,6 @@ main .tasks {
   gap: 30px;
 }
 main .tasks .task {
-  position: relative;
   padding: 10px;
   color: #BFA575;
   border-width: 1px;
@@ -172,27 +180,31 @@ main .tasks .task {
   border-color: #BFA575;
   border-radius: 10px;
 }
-main .tasks .task .title {
+main .tasks .task .task-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 20px;
+}
+main .tasks .task .task-header .title {
   font-size: 32px;
   font-weight: 800;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-main .tasks .task .task-description {
-  line-height: 1.8;
-  overflow: hidden;
-  height: 0;
-}
-main .tasks .task .actions {
-  position: absolute;
-  top: 30px;
-  right: 20px;
+main .tasks .task .task-header .actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 20px;
 }
-main .tasks .task .actions i {
+main .tasks .task .task-header .actions i {
   font-size: 22px;
   cursor: pointer;
   -webkit-user-select: none;
@@ -200,6 +212,13 @@ main .tasks .task .actions i {
       -ms-user-select: none;
           user-select: none;
 }
-main .tasks .task .actions i:hover {
+main .tasks .task .task-header .actions i:hover {
   color: #b1a081;
+}
+main .tasks .task .task-description {
+  line-height: 1.8;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  overflow: hidden;
+  height: 0;
 }

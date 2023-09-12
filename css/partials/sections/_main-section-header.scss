@@ -25,21 +25,26 @@ main {
                 width: 50%;
             }
         }
-        button {
-            display: block;
-            padding: 10px;
-            background-color: $secondary-color;
-            color: white;
-            font: {
-                size: 18px;
-                weight: $text-weight;
-            };
-            cursor: pointer;
-            user-select: none;
-            border-radius: 6px;
-            border: none;
-            &:hover {
-                background-color: $hover-color;
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            button {
+                display: block;
+                padding: 10px;
+                background-color: $secondary-color;
+                color: white;
+                font: {
+                    size: 18px;
+                    weight: $text-weight;
+                };
+                cursor: pointer;
+                user-select: none;
+                border-radius: 6px;
+                border: none;
+                &:hover {
+                    background-color: $hover-color;
+                }
             }
         }
     }
