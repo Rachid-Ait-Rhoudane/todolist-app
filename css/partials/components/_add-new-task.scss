@@ -4,10 +4,8 @@
 
 #add-new-task {
     @extend %modal-wrapper;
-    display: none;
     .modal {
         @extend %modal;
-        top: -50%;
         .modal-title {
             @extend %modal-title;
         }
