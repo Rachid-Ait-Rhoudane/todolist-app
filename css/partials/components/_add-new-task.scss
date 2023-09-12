@@ -1,0 +1,49 @@
+@use "../general/variables" as *;
+@use "../helpers/placeholders" as *;
+@use "../helpers/mixins" as *;
+
+.modal-wrapper {
+    @extend %modal-wrapper;
+    .modal {
+        @extend %modal;
+        .modal-title {
+            @extend %modal-title;
+        }
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 20px;
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                label {
+                    font: {
+                        size: 18px;
+                        weight: bold;
+                    };
+                    color: #333;
+                    @include breakpoints(mobile) {
+                        font-size: 14px;
+                    }
+                }
+            }
+            input {
+                @extend %modal-inputs;    
+            }
+            textarea {
+                @extend %modal-inputs;
+            }
+        }
+        .modal-buttons {
+            @extend %modal-buttons-wrapper;
+            .save {
+                @include modal-button(green, rgb(5, 118, 5));
+            }
+            .cancel {
+                @include modal-button(#777, #666);
+            }
+        }
+    }
+}

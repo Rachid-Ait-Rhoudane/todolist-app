@@ -1,5 +1,8 @@
 // Import general rules
 @use "./partials/general/general-rules";
 
+// Import components
+@use "./partials/components";
+
 // Import sections
 @use "./partials/sections";

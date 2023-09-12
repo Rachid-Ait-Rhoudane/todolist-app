@@ -68,6 +68,27 @@
             </div>
         </div>
     </main>
+
+    <!-- Add new task modal -->
+    <div class="modal-wrapper" id="add-new-task">
+        <div class="modal">
+            <h3 class="modal-title">Add New Task</h3>
+            <div class="modal-content">
+                <div class="task-title">
+                    <label for="title">Task Title:</label>
+                    <input type="text" name="title" placeholder="Your Task Title is...">
+                </div>
+                <div class="task-description">
+                    <label for="description">Task Description:</label>
+                    <textarea name="description" id="description" cols="30" rows="10" placeholder="Write a description for your new Task"></textarea>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel" type="button">Cancel</button>
+                <button class="save" type="button">Save</button>
+            </div>
+        </div>
+    </div>
     
     <script src="./js/index.js"></script>
 </body>

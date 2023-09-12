@@ -1,9 +1,63 @@
 @use "../general/variables" as *;
+@use "../helpers/mixins" as *;
 
 %main-section-header-lignes {
     content: "";
     position: absolute;
     left: 0;
-    height: 1px;
+    height: 1px; 
     background-color: $secondary-color;
+}
+
+%modal-wrapper{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    display: none;
+}
+
+%modal {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    @include breakpoints(mobile) {
+        width: 75%;
+    }
+}
+
+%modal-title {
+    margin-bottom: 20px;
+    font: {
+        size: 32px;
+        weight: $text-weight;
+    };
+    @include breakpoints(mobile) {
+        font-size: 25px;
+    }
+}
+
+%modal-buttons-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+
+%modal-inputs {
+    padding: 10px;
+    outline: none;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    color: black;
+    @include breakpoints(mobile) {
+        font-size: 14px;
+    }
 }
