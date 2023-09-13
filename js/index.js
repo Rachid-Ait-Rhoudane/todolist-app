@@ -111,6 +111,10 @@ function showTask (id, title, description) {
     taskActions.className = "actions";
     let editIcon = document.createElement("i");
     editIcon.className = "fa-solid fa-pen-to-square";
+    editIcon.addEventListener("click", function(e) {
+        let chosenTask = e.target.parentNode.parentNode.parentNode;
+        editTask(chosenTask);
+    });
     let deleteIcon = document.createElement("i");
     deleteIcon.className = "fa-solid fa-trash";
     deleteIcon.addEventListener("click", function (e) {
@@ -188,4 +192,8 @@ function deleteTask(chosenTask) {
         closedeleteTaskModal(deleteModal);
 
     });
+}
+
+function  editTask(chosenTask) {
+
 }
