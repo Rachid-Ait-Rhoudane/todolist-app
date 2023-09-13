@@ -60,7 +60,7 @@ main .header h3::before, main .header h3::after {
   background-color: #BFA575;
 }
 
-#delete-all, #add-new-task {
+#delete-task, #delete-all, #add-new-task {
   position: fixed;
   z-index: -1;
   top: 0;
@@ -69,7 +69,7 @@ main .header h3::before, main .header h3::after {
   height: 100%;
 }
 
-#delete-all .modal, #add-new-task .modal {
+#delete-task .modal, #delete-all .modal, #add-new-task .modal {
   position: absolute;
   top: -50%;
   left: 50%;
@@ -85,23 +85,23 @@ main .header h3::before, main .header h3::after {
           transition-duration: 0.5s;
 }
 @media (max-width: 767px) {
-  #delete-all .modal, #add-new-task .modal {
+  #delete-task .modal, #delete-all .modal, #add-new-task .modal {
     width: 75%;
   }
 }
 
-#delete-all .modal .modal-title, #add-new-task .modal .modal-title {
+#delete-task .modal .modal-title, #delete-all .modal .modal-title, #add-new-task .modal .modal-title {
   margin-bottom: 20px;
   font-size: 32px;
   font-weight: 800;
 }
 @media (max-width: 767px) {
-  #delete-all .modal .modal-title, #add-new-task .modal .modal-title {
+  #delete-task .modal .modal-title, #delete-all .modal .modal-title, #add-new-task .modal .modal-title {
     font-size: 25px;
   }
 }
 
-#delete-all .modal .modal-buttons, #add-new-task .modal .modal-buttons {
+#delete-task .modal .modal-buttons, #delete-all .modal .modal-buttons, #add-new-task .modal .modal-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -268,6 +268,68 @@ main .header h3::before, main .header h3::after {
 }
 @media (max-width: 767px) {
   #delete-all .modal .modal-buttons .cancel {
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+#delete-task .modal .modal-content {
+  padding-bottom: 20px;
+  line-height: 1.8;
+  color: #777;
+}
+#delete-task .modal .modal-buttons .save {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: green;
+}
+#delete-task .modal .modal-buttons .save:hover {
+  background-color: rgb(5, 118, 5);
+}
+@media (max-width: 767px) {
+  #delete-task .modal .modal-buttons .save {
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+#delete-task .modal .modal-buttons .cancel {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: #777;
+}
+#delete-task .modal .modal-buttons .cancel:hover {
+  background-color: #666;
+}
+@media (max-width: 767px) {
+  #delete-task .modal .modal-buttons .cancel {
     font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
