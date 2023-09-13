@@ -214,12 +214,6 @@ main .header h3::before, main .header h3::after {
   }
 }
 
-#delete-all {
-  display: none;
-}
-#delete-all .modal {
-  top: -50%;
-}
 #delete-all .modal .modal-content {
   padding-bottom: 20px;
   line-height: 1.8;

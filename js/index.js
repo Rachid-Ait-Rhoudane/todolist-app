@@ -37,7 +37,6 @@ addModalCancelButton.addEventListener("click", function () {
 });
 
 addModalSaveButton.addEventListener("click", function () {
-    taskId++;
 
     let newTask = {
         id: taskId,
@@ -52,6 +51,9 @@ addModalSaveButton.addEventListener("click", function () {
     closeAddNewtaskModal();
 
     showTask(newTask.id, newTask.title, newTask.description);
+
+    taskId++;
+
 });
 
 //Delete All Tasks
@@ -62,6 +64,32 @@ let deleteAllModal = document.querySelector("#delete-all .modal");
 let DeleteAllCancel = document.querySelector("#delete-all .modal-buttons .cancel");
 
 let DeleteAllSave = document.querySelector("#delete-all .modal-buttons .save");
+
+deleteAllButton.addEventListener("click", function () {
+    deleteAllModal.parentNode.style.zIndex = 99;
+    deleteAllModal.parentNode.style.backgroundColor = "rgba(0,0,0,0.5)";
+    deleteAllModal.style.top = "50%";
+});
+
+DeleteAllCancel.addEventListener("click", function () {
+    closedeleteAllModal()
+});
+
+DeleteAllSave.addEventListener("click", function () {
+
+    let shownTasks = Array.from(tasksWrapper.childNodes);
+
+    for(let task of shownTasks) {
+        task.remove();
+    }
+
+    localStorage.removeItem("tasks");
+
+    tasks = [];
+
+    closedeleteAllModal()
+
+});
 
 
 function showTask (id, title, description) {
@@ -101,9 +129,19 @@ function showTask (id, title, description) {
 }
 
 function closeAddNewtaskModal() {
+    newTaskTitle.value = "";
+    newTaskDescription.value = "";
     addNewTaskModal.style.top = "-50%";
     setTimeout(() => {
         addNewTaskModal.parentNode.style.zIndex = -1;
         addNewTaskModal.parentNode.style.backgroundColor = "transparent";
+    }, 500);
+}
+
+function closedeleteAllModal() {
+    deleteAllModal.style.top = "-50%";
+    setTimeout(() => {
+        deleteAllModal.parentNode.style.zIndex = -1;
+        deleteAllModal.parentNode.style.backgroundColor = "transparent";
     }, 500);
 }
