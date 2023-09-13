@@ -3,14 +3,15 @@ let tasksWrapper = document.querySelector("main .tasks");
 
 let tasks = localStorage.getItem("tasks") ?? [];
 
+let taskId = 1;
+
 if(!Array.isArray(tasks)) {
     tasks = JSON.parse(tasks);
+    taskId = tasks[tasks.length -1].id + 1;
 }
 
-let taskId = 1;
 for(let task of tasks) {
-    showTask(taskId, task.title, task.description);
-    taskId++;
+    showTask(task.id, task.title, task.description);
 }
 
 // Add New Task
@@ -91,6 +92,78 @@ DeleteAllSave.addEventListener("click", function () {
 
 });
 
+let chosenTask = tasksWrapper.children[0];
+
+// Delete specific task
+let deleteModal = document.querySelector("#delete-task .modal");
+
+let DeleteCancel = document.querySelector("#delete-task .modal-buttons .cancel");
+
+let DeleteSave = document.querySelector("#delete-task .modal-buttons .save");
+
+DeleteCancel.addEventListener ("click", function () {
+    closedeleteTaskModal(deleteModal);
+});
+
+DeleteSave.addEventListener("click", function () {
+    console.log(chosenTask.id);
+    
+    for(let i = 0; i < tasks.length; i++) {
+        if(tasks[i].id == chosenTask.id) {
+            tasks.splice(i, 1);
+            break;
+        }
+    }
+
+    if(JSON.stringify(tasks) !== "[]") {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    } else {
+        localStorage.removeItem("tasks");
+    }
+
+    chosenTask.remove();
+
+    closedeleteTaskModal(deleteModal);
+
+});
+
+// Edit specific task
+let editModal = document.querySelector("#edit-task .modal");
+
+let editCancel = document.querySelector("#edit-task .modal-buttons .cancel");
+
+let editSave = document.querySelector("#edit-task .modal-buttons .save");
+
+let oldTaskTitle = document.querySelector("#edit-task .modal-content .task-title input");
+
+let oldTaskDescription = document.querySelector("#edit-task .modal-content .task-description textarea");
+
+editCancel.addEventListener("click", function () {
+    closeEditTaskModal(editModal);
+});
+
+editSave.addEventListener("click", function () {
+
+    chosenTask.childNodes[0].childNodes[0].innerText = oldTaskTitle.value;
+    chosenTask.childNodes[1].innerText = oldTaskDescription.value;
+
+    for(let i = 0; i < tasks.length; i++) {
+        if(tasks[i].id === +chosenTask.id) {
+            tasks.splice(i, 1, {
+                id: +chosenTask.id,
+                title: oldTaskTitle.value,
+                description: oldTaskDescription.value
+            });
+            break;
+        }
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    closeEditTaskModal(editModal);
+
+});
+
 
 function showTask (id, title, description) {
 
@@ -112,14 +185,20 @@ function showTask (id, title, description) {
     let editIcon = document.createElement("i");
     editIcon.className = "fa-solid fa-pen-to-square";
     editIcon.addEventListener("click", function(e) {
-        let chosenTask = e.target.parentNode.parentNode.parentNode;
-        editTask(chosenTask);
+        chosenTask = e.target.parentNode.parentNode.parentNode;
+        oldTaskTitle.value = chosenTask.childNodes[0].childNodes[0].innerText;
+        oldTaskDescription.value = chosenTask.childNodes[1].innerText;
+        editModal.parentNode.style.zIndex = 99;
+        editModal.parentNode.style.backgroundColor = "rgba(0,0,0,0.5)";
+        editModal.style.top = "50%";
     });
     let deleteIcon = document.createElement("i");
     deleteIcon.className = "fa-solid fa-trash";
     deleteIcon.addEventListener("click", function (e) {
-        let chosenTask = e.target.parentNode.parentNode.parentNode;
-        deleteTask(chosenTask);
+        chosenTask = e.target.parentNode.parentNode.parentNode;
+        deleteModal.parentNode.style.zIndex = 99;
+        deleteModal.parentNode.style.backgroundColor = "rgba(0,0,0,0.5)";
+        deleteModal.style.top = "50%";
     });
     taskActions.appendChild(editIcon);
     taskActions.appendChild(deleteIcon);
@@ -162,38 +241,10 @@ function closedeleteTaskModal(deleteModal) {
     }, 500);
 }
 
-function deleteTask(chosenTask) {
-
-    let deleteModal = document.querySelector("#delete-task .modal");
-    let DeleteCancel = document.querySelector("#delete-task .modal-buttons .cancel");
-    let DeleteSave = document.querySelector("#delete-task .modal-buttons .save");
-
-    deleteModal.parentNode.style.zIndex = 99;
-    deleteModal.parentNode.style.backgroundColor = "rgba(0,0,0,0.5)";
-    deleteModal.style.top = "50%";
-
-    DeleteCancel.addEventListener ("click", function () {
-        closedeleteTaskModal(deleteModal);
-    });
-
-    DeleteSave.addEventListener("click", function () {
-
-        for(let i = 0; i < tasks.length; i++) {
-            if(tasks[i].id == chosenTask.id) {
-                tasks.splice(i, 1);
-                break;
-            }
-        }
-
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-
-        chosenTask.remove();
-
-        closedeleteTaskModal(deleteModal);
-
-    });
-}
-
-function  editTask(chosenTask) {
-
+function closeEditTaskModal(editModal) {
+    editModal.style.top = "-50%";
+    setTimeout(() => {
+        editModal.parentNode.style.zIndex = -1;
+        editModal.parentNode.style.backgroundColor = "transparent";
+    }, 500);
 }
