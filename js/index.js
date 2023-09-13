@@ -113,6 +113,10 @@ function showTask (id, title, description) {
     editIcon.className = "fa-solid fa-pen-to-square";
     let deleteIcon = document.createElement("i");
     deleteIcon.className = "fa-solid fa-trash";
+    deleteIcon.addEventListener("click", function (e) {
+        let chosenTask = e.target.parentNode.parentNode.parentNode;
+        deleteTask(chosenTask);
+    });
     taskActions.appendChild(editIcon);
     taskActions.appendChild(deleteIcon);
     taskHeader.appendChild(taskActions);
@@ -144,4 +148,44 @@ function closedeleteAllModal() {
         deleteAllModal.parentNode.style.zIndex = -1;
         deleteAllModal.parentNode.style.backgroundColor = "transparent";
     }, 500);
+}
+
+function closedeleteTaskModal(deleteModal) {
+    deleteModal.style.top = "-50%";
+    setTimeout(() => {
+        deleteModal.parentNode.style.zIndex = -1;
+        deleteModal.parentNode.style.backgroundColor = "transparent";
+    }, 500);
+}
+
+function deleteTask(chosenTask) {
+
+    let deleteModal = document.querySelector("#delete-task .modal");
+    let DeleteCancel = document.querySelector("#delete-task .modal-buttons .cancel");
+    let DeleteSave = document.querySelector("#delete-task .modal-buttons .save");
+
+    deleteModal.parentNode.style.zIndex = 99;
+    deleteModal.parentNode.style.backgroundColor = "rgba(0,0,0,0.5)";
+    deleteModal.style.top = "50%";
+
+    DeleteCancel.addEventListener ("click", function () {
+        closedeleteTaskModal(deleteModal);
+    });
+
+    DeleteSave.addEventListener("click", function () {
+
+        for(let i = 0; i < tasks.length; i++) {
+            if(tasks[i].id == chosenTask.id) {
+                tasks.splice(i, 1);
+                break;
+            }
+        }
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        chosenTask.remove();
+
+        closedeleteTaskModal(deleteModal);
+
+    });
 }
