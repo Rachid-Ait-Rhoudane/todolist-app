@@ -46,6 +46,11 @@ main {
                     background-color: $hover-color;
                 }
             }
+            span {
+                @include breakpoints(mobile) {
+                    display: none;
+                }
+            }
         }
     }
 }
